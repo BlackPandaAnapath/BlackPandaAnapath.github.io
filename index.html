@@ -1,51 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Sèche GOAT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SÈCHE GOAT</title>
 
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#000000">
-
-<!-- iOS splash -->
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icon-192.png">
 
 <style>
-body {
-  margin:0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background:#000;
-  color:#fff;
-}
-.splash {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-.goat {
-  font-size:72px;
-}
+body{margin:0;font-family:system-ui;background:#000;color:#fff}
+#splash{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh}
+#app{display:none;padding:20px}
+input,button{padding:10px;margin:5px;width:100%}
 </style>
 </head>
 <body>
 
-<div class="splash">
-  <div class="goat">🐐</div>
+<div id="splash">
+  <div style="font-size:72px">🐐</div>
   <h1>SÈCHE GOAT</h1>
   <p>Chargement…</p>
 </div>
 
+<div id="app">
+  <h2>Recomposition corporelle</h2>
+  <label>Calories cible</label>
+  <input id="calories" type="number">
+  <button onclick="save()">Sauvegarder</button>
+  <p id="status"></p>
+</div>
+
+<script src="./app.js" defer></script>
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('./sw.js');
 }
 </script>
-
 </body>
 </html>
