@@ -1,12 +1,7 @@
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open("seche-goat").then(cache =>
-      cache.addAll(["./","./index.html","./app.js"])
-    )
-  );
+
+self.addEventListener("install",e=>{
+  e.waitUntil(caches.open("goat-v5").then(c=>c.addAll(["./","./index.html","./style.css","./app.js"])));
 });
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request))
-  );
+self.addEventListener("fetch",e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
 });

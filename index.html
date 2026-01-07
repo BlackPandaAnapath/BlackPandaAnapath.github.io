@@ -1,42 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SÈCHE GOAT</title>
-
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#000000">
-<link rel="apple-touch-icon" href="./icon-192.png">
-
-<style>
-body{margin:0;font-family:system-ui;background:#000;color:#fff}
-#splash{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh}
-#app{display:none;padding:20px}
-input,button{padding:10px;margin:5px;width:100%}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SÈCHE GOAT V5</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header>
+  <h1>🐐 SÈCHE GOAT</h1>
+  <div id="status"></div>
+</header>
 
-<div id="splash">
-  <div style="font-size:72px">🐐</div>
-  <h1>SÈCHE GOAT</h1>
-  <p>Chargement…</p>
-</div>
+<nav>
+  <button onclick="showTab('nutrition')">Nutrition</button>
+  <button onclick="showTab('suivi')">Suivi</button>
+  <button onclick="showTab('coach')">Coach</button>
+</nav>
 
-<div id="app">
-  <h2>Recomposition corporelle</h2>
-  <label>Calories cible</label>
-  <input id="calories" type="number">
-  <button onclick="save()">Sauvegarder</button>
-  <p id="status"></p>
-</div>
+<main>
+<section id="nutrition" class="tab">
+  <h2>Objectif du jour</h2>
+  <p id="calTarget"></p>
+  <p id="macroTarget"></p>
 
-<script src="./app.js" defer></script>
+  <h3>Consommé</h3>
+  <input id="foodCal" type="number" placeholder="Calories">
+  <button onclick="addCalories()">Ajouter</button>
+  <p id="calConsumed"></p>
+</section>
+
+<section id="suivi" class="tab hidden">
+  <h2>Suivi du poids</h2>
+  <input id="weightInput" type="number" placeholder="Poids du jour">
+  <button onclick="addWeight()">Sauvegarder</button>
+  <ul id="weightList"></ul>
+</section>
+
+<section id="coach" class="tab hidden">
+  <h2>Coach GOAT</h2>
+  <p id="coachMessage"></p>
+  <ul id="coachHistory"></ul>
+</section>
+</main>
+
+<script src="data.js"></script>
+<script src="nutrition.js"></script>
+<script src="coach.js"></script>
+<script src="app.js"></script>
 <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js');
-}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script>
 </body>
 </html>
